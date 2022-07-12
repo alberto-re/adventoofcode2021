@@ -3,7 +3,6 @@
 
 from typing import List, Tuple
 
-
 EXAMPLE = """\
 7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
@@ -101,6 +100,7 @@ def first_to_win(numbers: List[int], boards: List[Board]) -> Tuple[int, List[int
         for board in boards:
             if board.check(number):
                 return number, board.unmarked()
+    return -1, []
 
 
 def last_to_win(numbers: List[int], boards: List[Board]) -> Tuple[int, List[int]]:

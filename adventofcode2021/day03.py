@@ -2,8 +2,8 @@
 # --- Day 3: Binary Diagnostic ---
 
 
-from typing import Dict, List, Tuple
 from copy import deepcopy
+from typing import Dict, List, Tuple
 
 MOST_COMMON = 1
 LEAST_COMMON = 0
@@ -25,7 +25,7 @@ EXAMPLE = """\
 
 
 def lines_to_matrix(lines: List[str]) -> List[List[str]]:
-    matrix = []
+    matrix: List[List[str]] = []
     for n, line in enumerate(lines):
         matrix.append([])
         for bit in list(line.rstrip()):
@@ -55,7 +55,7 @@ def compute_gamma_epsilon(bit_count: List[Dict[str, int]]) -> Tuple[str, str]:
     return gamma, epsilon
 
 
-def compute_rating(report: List[List[str]], criteria: int) -> Tuple[str, str]:
+def compute_rating(report: List[List[str]], criteria: int) -> str:
     considered = deepcopy(report)
     for i in range(len(report[0])):
         bit_count = count_bits_by_position(considered)
