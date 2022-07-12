@@ -99,7 +99,6 @@ def main():
     )
     assert life_support_rating == 230
 
-
     with open("input/day03.txt") as f:
         report = lines_to_matrix(f.readlines())
 
@@ -118,6 +117,7 @@ def main():
     )
 
     print(f"Part two solution: {life_support_rating}")
+
 
 if __name__ == "__main__":
     main()

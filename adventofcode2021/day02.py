@@ -31,7 +31,9 @@ def follow_planned_course(
 
 def main():
     with open("input/day02.txt") as f:
-        course = [(line.rstrip().split()[0], int(line.rstrip().split()[1])) for line in f]
+        course = [
+            (line.rstrip().split()[0], int(line.rstrip().split()[1])) for line in f
+        ]
 
     hp, depth = follow_planned_course(course)
 
@@ -40,6 +42,7 @@ def main():
     hp, depth = follow_planned_course(course, track_aim=True)
 
     print(f"Part two solution: {hp * depth}")
+
 
 if __name__ == "__main__":
     main()
