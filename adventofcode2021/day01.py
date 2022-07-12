@@ -12,9 +12,13 @@ def sliding_windows(series: List[int], size: int = 3) -> List[int]:
     return [sum(series[i : i + size]) for i in range(len(series) - size + 1)]
 
 
-with open("input/day01.txt") as f:
-    lines = [int(line.rstrip()) for line in f]
+def main():
+    with open("input/day01.txt") as f:
+        lines = [int(line.rstrip()) for line in f]
 
-print(f"Part one solution: {count_increments(lines)}")
+    print(f"Part one solution: {count_increments(lines)}")
+    print(f"Part two solution: {count_increments(sliding_windows(lines))}")
 
-print(f"Part two solution: {count_increments(sliding_windows(lines))}")
+
+if __name__ == "__main__":
+    main()

@@ -71,49 +71,53 @@ def compute_rating(report: List[List[str]], criteria: int) -> Tuple[str, str]:
     return "".join(considered.pop())
 
 
-report = lines_to_matrix(EXAMPLE.split("\n"))
-assert len(report) == 12
-assert len(report[0]) == 5
+def main():
+    report = lines_to_matrix(EXAMPLE.split("\n"))
+    assert len(report) == 12
+    assert len(report[0]) == 5
 
-bit_count = count_bits_by_position(report)
-assert bit_count[0]["0"] == 5
-assert bit_count[0]["1"] == 7
+    bit_count = count_bits_by_position(report)
+    assert bit_count[0]["0"] == 5
+    assert bit_count[0]["1"] == 7
 
-gamma, epsilon = compute_gamma_epsilon(bit_count)
+    gamma, epsilon = compute_gamma_epsilon(bit_count)
 
-assert gamma == "10110"
-assert epsilon == "01001"
+    assert gamma == "10110"
+    assert epsilon == "01001"
 
-power_consumption = int(gamma, base=2) * int(epsilon, base=2)
-assert power_consumption == 198
+    power_consumption = int(gamma, base=2) * int(epsilon, base=2)
+    assert power_consumption == 198
 
-oxygen_generator_rating = compute_rating(report, MOST_COMMON)
-co2_scrubber_rating = compute_rating(report, LEAST_COMMON)
+    oxygen_generator_rating = compute_rating(report, MOST_COMMON)
+    co2_scrubber_rating = compute_rating(report, LEAST_COMMON)
 
-assert oxygen_generator_rating == "10111"
-assert co2_scrubber_rating == "01010"
+    assert oxygen_generator_rating == "10111"
+    assert co2_scrubber_rating == "01010"
 
-life_support_rating = int(oxygen_generator_rating, base=2) * int(
-    co2_scrubber_rating, base=2
-)
-assert life_support_rating == 230
+    life_support_rating = int(oxygen_generator_rating, base=2) * int(
+        co2_scrubber_rating, base=2
+    )
+    assert life_support_rating == 230
 
 
-with open("input/day03.txt") as f:
-    report = lines_to_matrix(f.readlines())
+    with open("input/day03.txt") as f:
+        report = lines_to_matrix(f.readlines())
 
-bit_count = count_bits_by_position(report)
+    bit_count = count_bits_by_position(report)
 
-gamma, epsilon = compute_gamma_epsilon(bit_count)
-power_consumption = int(gamma, base=2) * int(epsilon, base=2)
+    gamma, epsilon = compute_gamma_epsilon(bit_count)
+    power_consumption = int(gamma, base=2) * int(epsilon, base=2)
 
-print(f"Part one solution: {power_consumption}")
+    print(f"Part one solution: {power_consumption}")
 
-oxygen_generator_rating = compute_rating(report, MOST_COMMON)
-co2_scrubber_rating = compute_rating(report, LEAST_COMMON)
+    oxygen_generator_rating = compute_rating(report, MOST_COMMON)
+    co2_scrubber_rating = compute_rating(report, LEAST_COMMON)
 
-life_support_rating = int(oxygen_generator_rating, base=2) * int(
-    co2_scrubber_rating, base=2
-)
+    life_support_rating = int(oxygen_generator_rating, base=2) * int(
+        co2_scrubber_rating, base=2
+    )
 
-print(f"Part two solution: {life_support_rating}")
+    print(f"Part two solution: {life_support_rating}")
+
+if __name__ == "__main__":
+    main()
