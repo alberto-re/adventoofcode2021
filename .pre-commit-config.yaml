@@ -25,3 +25,7 @@ repos:
   rev: v2.5
   hooks:
   - id: vulture
+    args: [
+      "--min-confidence", "90",
+      "adventofcode2021",
+    ]
