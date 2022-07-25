@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # --- Day 7: The Treachery of Whales ---
-from typing import List
+from typing import Callable, List
 
 EXAMPLE = "16,1,2,0,4,2,7,1,2,14"
 
@@ -15,8 +15,10 @@ initial_positions = positions_from_input(EXAMPLE)
 assert initial_positions == [16, 1, 2, 0, 4, 2, 7, 1, 2, 14], initial_positions
 
 
-def alignment_cost(position_to_align: int, positions: List[int]) -> int:
-    return sum([abs(p - position_to_align) for p in positions])
+def alignment_cost(
+    position_to_align: int, positions: List[int], rate: Callable = lambda n: n
+) -> int:
+    return sum([rate(abs(p - position_to_align)) for p in positions])
 
 
 for position, cost_exp in EXAMPLE_KNOWN_COSTS:
@@ -24,10 +26,10 @@ for position, cost_exp in EXAMPLE_KNOWN_COSTS:
     assert cost == cost_exp, cost
 
 
-def minimize_cost(positions: List[int]) -> int:
+def minimize_cost(positions: List[int], rate: Callable = lambda n: n) -> int:
     mincost = 99999999
     for pos in range(len(positions)):
-        cost = alignment_cost(pos, positions)
+        cost = alignment_cost(pos, positions, rate)
         if cost < mincost:
             mincost = cost
     return mincost
@@ -45,6 +47,12 @@ def main():
     min_cost = minimize_cost(initial_positions)
 
     print(f"Part one solution: {min_cost}")
+
+    min_cost = minimize_cost(
+        initial_positions, lambda n: sum([x for x in range(1, n + 1)])
+    )
+
+    print(f"Part two solution: {min_cost}")
 
 
 if __name__ == "__main__":
